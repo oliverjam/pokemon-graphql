@@ -1,7 +1,7 @@
 const express = require("express");
 const { buildSchema } = require("graphql");
 const graphqlHttp = require("express-graphql");
-const data = require("./data.json");
+const data = require("../data.json");
 
 const app = express();
 
