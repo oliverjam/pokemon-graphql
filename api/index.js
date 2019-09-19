@@ -7,6 +7,7 @@ const data = require("../data.json");
 const app = express();
 
 app.use(cors());
+app.options("*", cors());
 
 const schema = buildSchema(`
 type Pokemon {
