@@ -1,9 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const { buildSchema } = require("graphql");
 const graphqlHttp = require("express-graphql");
 const data = require("../data.json");
 
 const app = express();
+
+app.use(cors());
 
 const schema = buildSchema(`
 type Pokemon {
