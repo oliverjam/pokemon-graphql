@@ -39,13 +39,19 @@ type Mutation {
 }
 `);
 
+let id = 0;
+
 const rootValue = {
   allPokemon: () => data,
   pokemon: variables => data.find(pokemon => pokemon.name === variables.name),
-  createPokemon: variables => ({
-    ...variables.input,
-    id: String(Math.random()),
-  }),
+  createPokemon: variables => {
+    const newPoke = {
+      ...variables.input,
+      id: String(id++),
+    };
+    data.push(newPoke);
+    return newPoke;
+  },
 };
 
 const defaultQuery = `{
