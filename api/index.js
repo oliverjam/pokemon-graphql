@@ -24,11 +24,28 @@ type Query {
   allPokemon: [Pokemon!],
   pokemon(name: String!): Pokemon
 }
+
+input PokeInput {
+  name: String!,
+  species_id: Int!,
+  height: Int!,
+  weight: Int!,
+  base_experience: Int!,
+  order: Int!,
+}
+
+type Mutation {
+  createPokemon(input: PokeInput!): Pokemon!
+}
 `);
 
 const rootValue = {
   allPokemon: () => data,
   pokemon: variables => data.find(pokemon => pokemon.name === variables.name),
+  createPokemon: variables => ({
+    ...variables.input,
+    id: String(Math.random()),
+  }),
 };
 
 const defaultQuery = `{
